@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>迈向2025：党的新征程</title>
+  <style>
+    :root {
+      --primary-color: #c7000a;
+      --secondary-color: #ffd700;
+      --background-color: #f9f9f9;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: '思源黑体', sans-serif;
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      line-height: 1.6;
+    }
+    .header {
+      background: url('bk.jpg') no-repeat center center fixed;
+      background-size: 100% 100%;
+      color: black;
+      text-align: center;
+      padding: 6rem 2rem;
+    }
+    .header h1 {
+      font-size: 3.5rem; /* 标题字体加大 */
+    }
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .nav-links a {
+      margin: 0 1rem;
+      text-decoration: none;
+      color: var(--primary-color);
+      font-weight: bold;
+    }
+    .nav-links a.active {
+      color: var(--secondary-color);
+      text-decoration: underline;
+    }
+    .search-bar input {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .search-bar button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: var(--primary-color);
+      color: white;
+      border-radius: 5px;
+      margin-left: 5px;
+      cursor: pointer;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+    /* 所有主要页面内容包裹在此容器内 */
+    #mainContent {
+      transition: opacity 0.3s;
+    }
+    .section {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      margin: 2rem 0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    /* 时间轴样式 */
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .timeline-item {
+      border-left: 3px solid var(--primary-color);
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .timeline-item::before {
+      content: "★";
+      color: var(--secondary-color);
+      position: absolute;
+      left: -0.8rem;
+      top: 0;
+      font-size: 1.5rem;
+    }
+    /* “党的十八大以来...”模块：标题左对齐，但下方卡片整体居中 */
+    .span-2 {
+      grid-column: span 3;
+    }
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+      justify-content: center; /* 整体居中 */
+    }
+    .achievement-card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+      text-align: left; /* 卡片内文字左对齐 */
+    }
+    .achievement-card h4 {
+      margin-bottom: 0.5rem;
+      color: var(--primary-color);
+    }
+    .achievement-card p {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+    .read-more {
+      display: inline-block;
+      padding: 5px 10px;
+      background-color: transparent;
+      color: #0056b3;
+      text-decoration: none;
+      border-radius: 5px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .read-more:hover {
+      background-color:white;
+    }
+    /* 国际/国内形势排版：两列 */
+    .scenario-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .scenario-column {
+      flex: 1;
+      min-width: 300px;
+    }
+    .scenario-column h3 {
+      margin-bottom: 10px;
+      color: var(--primary-color);
+    }
+    .scenario-column ol {
+      list-style: decimal;
+      padding-left: 20px;
+    }
+    .scenario-column ol li {
+      margin-bottom: 10px;
+    }
+    .scenario-column ol li p {
+      margin-left: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+    /* 放射性流程图样式 */
+    .strategy-map {
+      width: 1000px;
+      height: 800px;
+      margin: 0 auto;
+      position: relative;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      background: #fff;
+    }
+    .core-node {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 160px;
+      height: 160px;
+      background: #C7000B;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      box-shadow: 0 0 20px rgba(199,0,11,0.3);
+      cursor: pointer;
+      transition: 0.3s;
+      text-align: center;
+      padding: 10px;
+    }
+    .main-node {
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      background: #FFD700;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 16px;
+      transition: 0.3s;
+      padding: 5px;
+      cursor: pointer;
+    }
+    .sub-node {
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      background: #005A9C;
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      opacity: 0;
+      transition: 0.3s;
+      padding: 5px;
+      cursor: pointer;
+    }
+    .core-node:hover {
+      transform: translate(-50%, -50%) scale(1.1);
+    }
+    .main-node:hover ~ .sub-node,
+    .sub-node:hover {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    .connector {
+      stroke: #C7000B;
+      stroke-dasharray: 5,5;
+      fill: none;
+    }
+    /* 学习园地样式 */
+    .learning-container {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .learning-container .card {
+      flex: 1;
+      min-width: 300px;
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px #aaa;
+      background: white;
+    }
+    .video-container {
+      margin-top: 15px;
+    }
+    .video-container iframe, .video-container video {
+      width: 100%;
+      height: 400px;
+      border-radius: 16px;
+    }
+    /* 小组成员学习心得：卡片网格 */
+    .sentiments-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 15px;
+    }
+    .sentiment-card {
+      border: 1px solid #ddd;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px #aaa;
+      background: white;
+    }
+    .sentiment-card h4 {
+      margin-bottom: 10px;
+      color: var(--primary-color);
+    }
+    .sentiment-card p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 10px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+    }
+    .sentiment-card a {
+      color: #007BFF;
+      text-decoration: none;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .sentiment-card a:hover {
+      text-decoration: underline;
+    }
+    /* 完整心得展示区域（模拟新页面效果） */
+    #reviewSection {
+      display: none;
+      background: white;
+      padding: 2rem;
+      margin: 2rem auto;
+      max-width: 800px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    /* 保持完整心得中每段首行空两格 */
+    #reviewSection p {
+      text-indent: 2em;
+      line-height: 1.8;
+      margin-bottom: 1em;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1>迈向2025：党的新征程</h1>
+  </header>
+  <nav class="nav">
+    <div class="nav-links">
+      <a href="#overview">历史方位</a>
+      <a href="#history">回顾</a>
+      <a href="#current">当下</a>
+      <a href="#goals">目标</a>
+      <a href="#learning" id="learningNav">学习园地</a>
+    </div>
+    <div class="search-bar">
+      <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="搜索...">
+        <button type="submit">搜索</button>
+      </form>
+    </div>
+  </nav>
+  <main class="container">
+    <!-- 所有主要页面内容 -->
+    <div id="mainContent">
+      <!-- 历史方位 -->
+      <section id="overview" class="section">
+        <h2>历史方位</h2>
+        <p>2025年是实施"十四五"规划的关键之年，是全面建设社会主义现代化国家新征程的重要节点。</p>
+      </section>
+      
+      <!-- 百年辉煌与时代使命 -->
+      <section id="history" class="section">
+        <h2>党的百年辉煌与时代使命</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <h3>救国：新民主主义革命时期（1921-1949）</h3>
+            <p>党领导人民进行了28年艰苦卓绝的斗争，推翻了帝国主义、封建主义和官僚资本主义“三座大山”，建立了中华人民共和国，实现了民族独立和人民解放，为中华民族伟大复兴创造了根本社会条件。</p>
+          </div>
+          <div class="timeline-item">
+            <h3>兴国：社会主义革命和建设时期（1949-1978）</h3>
+            <p>新中国成立后，党领导人民完成社会主义革命，确立社会主义基本制度，推进社会主义建设，为当代中国发展奠定了根本政治前提和制度基础。</p>
+          </div>
+          <div class="timeline-item">
+            <h3>富国：改革开放和社会主义现代化建设新时期（1978-2012）</h3>
+            <p>党的十一届三中全会开启了改革开放的伟大征程，推动经济快速发展，人民生活水平显著提高，实现了从站起来到富起来的伟大飞跃。</p>
+          </div>
+          <!-- 党的十八大以来模块：标题左对齐，卡片整体居中 -->
+          <div class="timeline-item span-2">
+            <h3>党的十八大以来的历史性成就与变革</h3>
+            <p>党的十八大以来，党和国家事业取得全方位、开创性的成就，发生深层次、根本性的变革。</p>
+            <div class="achievements-grid">
+              <div class="achievement-card">
+                <h4>经济建设</h4>
+                <p>我国经济实力实现历史性跃升，经济结构更加优化。</p>
+                <a href="#" class="read-more" >了解更多</a>
+              </div>
+              <div class="achievement-card">
+                <h4>改革开放</h4>
+                <p>全面深化改革取得重大突破，国家治理体系现代化水平显著提高。</p>
+                <a href="http://www.drc.gov.cn" class="read-more external" >了解更多</a>
+              </div>
+              <div class="achievement-card">
+                <h4>社会建设</h4>
+                <p>全面建成小康社会，解决了绝对贫困问题，社会保障体系规模巨大。</p>
+                <a href="#" class="read-more" >了解更多</a>
+              </div>
+              <div class="achievement-card">
+                <h4>生态文明建设</h4>
+                <p>牢固树立“绿水青山就是金山银山”的理念，生态环境保护发生全局性变化。</p>
+                <a href="#" class="read-more" >了解更多</a>
+              </div>
+              <div class="achievement-card">
+                <h4>全面从严治党</h4>
+                <p>反腐斗争取得压倒性胜利，党的自我革新能力显著提升。</p>
+                <a href="#" class="read-more" >了解更多</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- 2025年的时代背景与挑战 -->
+      <section id="current" class="section">
+        <h2>2025年的时代背景与挑战</h2>
+        <div class="scenario-container">
+          <div class="scenario-column">
+            <h3>国际形势</h3>
+            <ol>
+              <li>
+                全球化与逆全球化的博弈
+                <p>① 全球经济在2025年面临低增长常态，预计全球经济增长率为3.2%。然而，贸易保护主义和逆全球化趋势仍在加剧。</p>
+                <p>② “美国优先”政策和单边主义可能进一步破坏全球多边合作体系，加速逆全球化进程。</p>
+              </li>
+              <li>
+                国际格局多极化趋势与地缘政治的复杂性
+                <p>① 2025年，国际格局多极化加速，中小国家在国际事务中的话语权增加，但权力分散导致全球治理规则缺失和冲突风险上升。</p>
+                <p>② 地缘政治冲突持续发酵，俄乌冲突、朝鲜半岛局势、缅甸大选等热点问题可能进一步加剧地区不稳定。</p>
+              </li>
+              <li>
+                新兴技术革命带来的机遇与挑战
+                <p>① 人工智能、数字经济等新兴技术快速发展，成为经济增长的新引擎，但也带来了技术伦理和数据安全问题。</p>
+                <p>② 绿色低碳转型加速，全球围绕“双碳”目标的竞争加剧，部分西方国家可能利用绿色贸易壁垒限制中国相关产业。</p>
+              </li>
+            </ol>
+          </div>
+          <div class="scenario-column">
+            <h3>国内形势</h3>
+            <ol>
+              <li>
+                经济高质量发展的关键期
+                <p>① 2025年是中国“十四五”规划收官之年，经济结构转型与高质量发展进入关键阶段，预计经济增速将保持在4.5%-5%之间。</p>
+                <p>② 政策层面将更加注重内需市场，推动消费升级，同时支持科技创新和高端制造业发展。</p>
+              </li>
+              <li>
+                社会主要矛盾的转化与人民对美好生活的新期待
+                <p>① 随着经济发展，人民对美好生活的需求更加多样化，包括高质量教育、医疗、住房等。</p>
+                <p>② 政府将通过城中村改造、改善性住房支持等政策，缓解社会矛盾，提升生活质量。</p>
+              </li>
+              <li>
+                生态文明建设与可持续发展的紧迫性
+                <p>① 中国在绿色低碳转型方面取得显著进展，但绿色贸易壁垒和气候变化挑战依然严峻。</p>
+                <p>② 2025年，中国将继续推进“双碳”目标，加大在清洁能源、绿色制造等领域的投资，推动全面绿色转型。</p>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+      
+      <!-- 2025年战略部署与愿景 -->
+      <section id="goals" class="section">
+        <h2>2025年战略部署与愿景</h2>
+        <div class="strategy-map" id="strategyMap">
+          <svg id="connector-svg" width="100%" height="100%" style="position:absolute; top:0; left:0;"></svg>
+          <div class="core-node" id="coreNode">部署与愿景</div>
+        </div>
+      </section>
+      
+      <!-- 学习园地 -->
+      <section id="learning" class="section">
+        <h2>学习园地</h2>
+        <div class="learning-container">
+          <!-- 学习资料卡 -->
+          <div class="card">
+            <h3>学习资料</h3>
+            <ul>
+              <li><a href="https://www.gov.cn/zhengce/content/2020-11/03/content_5556991.htm" target="_blank">《十四五规划》全文</a></li>
+              <li><a href="https://www.12371.cn/" target="_blank">共产党员网</a></li>
+              <li><a href="https://www.xuexi.cn/" target="_blank">学习强国</a></li>
+              <li><a href="https://www.12371.cn/special/zggcdzc/" target="_blank">中国共产党章程</a></li>
+              <li><a href="https://dygbjy.12371.cn/special/fzdygz/" target="_blank">中国共产党发展党员工作细则</a></li>
+              <li><a href="https://www.12371.cn/special/zggcdjlcftl/" target="_blank">中国共产党纪律处分条例</a></li>
+            </ul>
+            <div class="video-container">
+              <iframe src="https://player.bilibili.com/player.html?bvid=BV1gP411Y7fd&page=1" frameborder="0" allowfullscreen></iframe>
+              <iframe src="https://www.12371.cn/2019/05/22/VIDE1558497121319591.shtml" frameborder="0" allowfullscreen></iframe>
+            </div>
+          </div>
+          <!-- 小组成员学习心得卡 -->
+          <div class="card">
+            <h3>小组成员学习心得</h3>
+            <div class="sentiments-grid">
+              <!-- 以张三为例，完整心得存放在隐藏容器中 -->
+              <div class="sentiment-card">
+                <h4>丁香玲</h4>
+                <p>我很荣幸能够在2025年参加我校党校组织的三月份党课学习，我十分珍惜这一次的学习机会，在课上专心听讲，并认真做好笔记……</p>
+                <a href="#" class="read-more" data-review-id="review-zhangsan">阅读全文</a>
+              </div>
+              <!-- 其他成员类似，可自行增加 -->
+              <div class="sentiment-card">
+                <h4>何泳薇</h4>
+                <p>在这段时间的党课学习过程中，我深刻体会到了作为一名入党发展对象在新时代下不断自我提升和自我革新的重要性……</p>
+                <a href="#" class="read-more" data-review-id="review-liSi">阅读全文</a>
+              </div>
+              <!-- … -->
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- 完整心得展示区域（模拟新页面效果） -->
+    <section id="reviewSection">
+      <!-- 内容由 JavaScript 动态填充 -->
+    </section>
+  </main>
+  <footer>
+    <p>© 2025 党课第二小组 | 学习党的新征程</p>
+  </footer>
+  
+  <!-- 隐藏的完整心得内容 -->
+  <div id="review-zhangsan" style="display:none;">
+    <p>
+      我很荣幸能够在2025年参加我校党校组织的三月份党课学习，我十分珍惜这一次的学习机会，在课上专心听讲，并认真做好笔记。经过党校的培训及对教材的学习，我不仅对中国共产党有了比较全面系统地认识，更深刻地对我党在新时代新背景下所面临的挑战与机遇以及我党在新时期的发展方向有了了解，在内心树立了共产主义的信念。同时，我也意识到我党组织性纪律性之强，入党的条件之高，我发现自己身上尚有不足，距离真正的党员还有一定的差距，但我一定会不断努力，提高自身的修养，以党员的要求来要求自己，让自己早日达到党员的条件，我会以实际行动争取早日加入中国共产党。
+    </p>
+    <p>
+      首先，我谈谈学习期间对党的进一步的认识。从中学开始，在思想政治课和历史课上，我就学习了关于我党诞生发展的历史，研习了我党在不同时期的方针政策。通过这次党课培训学习，我对党有了更系统的更进一步的认识。
+    </p>
+    <p>
+      我们党以马克思列宁主义、毛泽东思想、邓小平理论和“三个代表”重要思想，习近平新时代中国特色社会主义思想作为自己的行动指南。马克思列宁主义揭示了人类社会历史发展的规律。它指出，资本主义终究会被社会主义所代替，而人类最终会达到共产主义的境界。以毛泽东同志为代表的中国共产党人，以中国当时特定的历史环境出发，把马克思列宁主义和中国革命的具体实践结合起来，创立了毛泽东思想，它是中国革命和建设的正确理论和实践经验，事实证明它是正确的，客观的。就在这个正确思想的指导下，我党带领着全国各族人民先后取得了抗日战争和解放战争的胜利，取得了新民主主义革命的胜利。建国后，又顺利进行了社会主义改造，完成了新民主主义向社会主义的过渡。十一届三中全会后，以邓小平为主要代表的中国共产党人，总结了建国以来正反两方面的经验，解放思想，实事求是，把全党的工作重心转移到经济建设上，实行改革开放，逐渐形成了建设中国特色社会主义的路线方针，创立了邓小平理论。它是马克思列宁主义的基本原理同当代中国实践和时代特征相结合的产物，是毛泽东思想在新的历史条件下的继承和发展。纵观党的思想理论的发展历程，我深刻的体会到，我们党不断的根据国际国内形势的发展，不断的调整发展党的方针政策，真正做到了从国情出发，根据本国的实际，与时俱进。正是因为如此,党才能在不同的历史时期做出正确的选择，带领着中国各族人民战胜一个又一个的困难，从胜利走向胜利。
+    </p>
+    <p>
+      其次，我对党和人民群众的紧密联系也有了进一步的认识。党的根本原则是民主集中制，实行群众路线，一切为了群众，从群众中来，到群众中去。我在中小学就学习了雷锋、焦裕禄、张思德等的事迹，从他们身上深深感受到共产党员为人民无私奉献的优秀作风。老师在此次党课的学习中，提到了张思德同志，为人民服务！多么朴实无私的话语，是他一生的缩写。我深深地从他身上感受到，一名共产党员是以人民的利益为先的，是时刻想人民之所想，急人民之所急，扎扎实实地为人民办实事的。勇于奉献，是对党员的基本标准之一。全心全意为人民服务，是党之所以能赢得人民信任，能与群众广泛紧密结合在一起的力量源泉。党员往往能正确处理好个人利益与党的利益、人民的利益、集体的利益。我对我们党表示崇高的敬意，并由衷地热爱党，拥护党。
+    </p>
+    <p>
+      在学习期间，我明白了我们每一个入党积极分子都要端正自己的思想，我们首先从思想入党，树立无产阶级的世界观、人生观、价值观，树立全心全意为人民服务的信念，并从实际行动中表现出来。我们要端正我们的入党动机，明确作为一名党员所要具备的素质，所要具备的奉献精神，所要为人民做的，才能经得起党和人民的考验。全心全意为人民服务并不是非要我们做出什么惊天动地的大事，而是立足于我们的岗位，在日常的学习和生活中，一点一滴地做出贡献。
+    </p>
+  </div>
+  
+  <div id="review-liSi" style="display:none;">
+    <p>
+        在这段时间的党课学习过程中，我深刻体会到了作为一名入党发展对象在新时代下不断自我提升和自我革新的重要性。通过系统的理论学习、现场教学以及小组讨论，我不仅对党的光辉历程和先进理论有了更为直观的认识，也从中找到了作为新时代青年的责任和使命感。
+    </p>
+    </p>
+        一、理论武装：坚定理想信念
+    </p>
+    <p>
+        在“习近平新时代中国特色社会主义思想”的课程中，老师详细阐述了从毛泽东思想到习近平新时代中国特色社会主义思想的发展脉络，讲述了中国共产党在不同历史阶段的理论创新与实践探索。从“站起来”、“富起来”到“强起来”，这一历史性跨越不仅展示了我国从弱到强的历程，也昭示了我们未来的发展方向。老师还通过回顾党的重大会议，如党的八大和十一届六中全会，让我们认识到党的每一次理论更新和实践探索都离不开对时代脉搏的精准把握。特别是中国式现代化的五个特色，让我看到了我国在实现现代化过程中对人口、共同富裕、物质与精神、人与自然和谐以及和平发展道路的独特追求。这一切都使我更加坚定了理想信念，明白了只有不断学习和实践，才能紧跟党和国家的步伐，为实现中华民族伟大复兴贡献自己的力量。
+    </p>
+    <p>
+        在“理想、信念与入党动机”这堂课上，老师从哲学角度阐释了入党动机的问题。通过对功利性入党动机和全心全意为人民服务的正确动机进行剖析，我深感自己必须时刻警醒，不能被短期的利益所迷惑，而要把为人民服务、实现共产主义理想作为自己一生的追求。正如老师所强调的那样，正确的入党动机应当是出于内心对党和人民无限忠诚的信念，只有这样才能在面对各种挑战时保持初心不改，坚定前行。
+    </p>
+    </p>
+        二、制度与作风：砥砺前行的力量
+    </p>
+    <p>
+         “党的组织制度、纪律和作风”课程让我对党的建设有了更为全面的认识。从党的诞生到如今成为拥有九千八百万党员的世界最大执政党，党的制度建设和严明纪律是取得一切成就的重要保障。老师讲到，党内法规体系的逐步完善，不仅是我们党能不断取得胜利的重要经验，更是我们每个党员必须遵循的行为准则。通过学习，我认识到无论是在日常学习、科研还是社会实践中，都必须始终坚持民主集中制、严守党规党纪，只有这样才能真正做到自我约束、自我提升，自觉维护党的团结统一和先进性。
+    </p>
+    <p>
+        “党的宗旨和共产党员的先锋模范作用”这一课程进一步深化了我对党员责任的理解。党的宗旨始终是全心全意为人民服务，这不仅体现在雷锋精神的传承上，也贯穿于每一位党员的实际行动中。老师通过丰富的历史案例和理论解析，让我明白，作为一名党员，要在各自岗位上发挥先锋模范作用，不论是在抗击自然灾害、服务基层群众还是在科研攻关中，都应体现出不怕苦、不怕累的拼搏精神和担当精神。
+    </p>
+    </p>
+        三、现场教学：重温历史精神
+    </p>
+    <p>
+        参观唐绍仪故居的现场教学给我留下了深刻印象。唐绍仪作为我国早期杰出的政治家和爱国志士，他的事迹不仅激励着我们铭记历史，更让我们体会到艰苦奋斗和无私奉献的革命精神。走进他的故居，我仿佛能感受到那个时代先辈们面对国难家危时的坚定信念和无限忠诚，这种精神正是我们今天学习雷锋精神的重要源泉。现场教学不仅让我了解了历史，更激发了我立志投身于新时代建设的强烈愿望。
+    </p>
+    </p>
+        四、小组讨论：践行新时代雷锋精神
+    </p>
+    <p>
+        在以“新时代如何践行雷锋精神”为主题的小组讨论中，我结合自身专业背景，分享了自己的观点：新时代为雷锋精神注入了新的活力，它不仅是无私奉献，更是勇于担当与服务社会。作为一名大气科学专业的学子，我们拥有独特的专业优势。利用所学的专业知识，我们可以开展科普活动，向公众普及气象知识，帮助人们更好地应对极端天气。同时，在科研中，我们更应传承雷锋的钻研精神，脚踏实地，勇攀科学高峰，为解决大气环境问题贡献自己的智慧和力量。正如我在发言中所表达的那样，新时代的雷锋精神要求我们用实际行动践行“为人民服务”的宗旨，用科学知识为社会注入更多正能量。
+    </p>
+    </p>
+        五、总结与展望
+    </p>
+    <p>
+        通过这次党课系列学习，我深刻认识到，作为新时代的青年和党的发展对象，我们不仅要学好理论知识，更要在实践中不断锤炼自己。党的光辉历程和丰富的理论成果为我们指明了前进的方向，而现场教学和小组讨论则让我们看到了历史与现实、理论与实践的紧密联系。未来，我将以此次学习为契机，进一步加强政治理论学习，坚定理想信念，在工作、学习和生活中严格要求自己，做到知行合一。同时，我也会努力发扬雷锋精神，结合大气科学专业的特点，利用专业知识服务社会，积极参与科普宣传和环境保护工作，努力在新时代的长征路上贡献自己的一份力量。
+    </p>
+    <p>
+        党课学习不仅是一堂理论课，更是一堂实践课。每一堂课上老师的教诲、每一次现场参观和小组讨论的交流，都让我感受到了党和国家的厚重历史和无限未来。今后，我将不断加强自身建设，立足本职工作，始终不忘初心、牢记使命，以实际行动践行党的宗旨，为实现中华民族伟大复兴的中国梦而努力奋斗。
+    </p>
+
+  <!-- 此处可增加其他成员的完整心得隐藏容器（review-liSi、review-wangWu、review-zhaoLiu、review-qianQi 等） -->
+  
+  <!-- 脚本部分 -->
+  <script>
+    // 为所有 "read-more" 链接绑定事件，读取对应隐藏容器中的完整心得内容
+    document.querySelectorAll('.read-more').forEach(link => {
+      link.addEventListener('click', function(e) {
+        if (this.classList.contains('external')) return;
+        e.preventDefault();
+        const reviewId = this.getAttribute('data-review-id');
+        const reviewContent = document.getElementById(reviewId).innerHTML;
+        const reviewer = this.parentElement.querySelector('h4').textContent;
+        showReview(reviewer, reviewContent);
+      });
+    });
+    
+    // 模拟“新页面”效果显示完整心得
+    function showReview(name, content) {
+      // 高亮“学习园地”导航
+      document.querySelectorAll('.nav-links a').forEach(link => link.classList.remove('active'));
+      document.getElementById('learningNav').classList.add('active');
+      
+      // 隐藏主要内容，显示完整心得区域
+      document.getElementById('mainContent').style.display = 'none';
+      const reviewSection = document.getElementById('reviewSection');
+      reviewSection.innerHTML = `
+        <h2>${name}的学习心得</h2>
+        ${content}
+        <button onclick="hideReview()">返回</button>
+      `;
+      reviewSection.style.display = 'block';
+      
+      // 使用 History API 改变 URL（可选）
+      history.pushState({review: true}, "", "#review");
+    }
+    
+    function hideReview() {
+      // 恢复主要内容显示，隐藏完整心得区域
+      document.getElementById('reviewSection').style.display = 'none';
+      document.getElementById('mainContent').style.display = 'block';
+      document.getElementById('learningNav').classList.remove('active');
+      history.back();
+    }
+    
+    window.addEventListener('popstate', function(event) {
+      if (!event.state || !event.state.review) {
+        document.getElementById('reviewSection').style.display = 'none';
+        document.getElementById('mainContent').style.display = 'block';
+        document.getElementById('learningNav').classList.remove('active');
+      }
+    });
+    
+    // 搜索功能脚本
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      const sections = document.querySelectorAll('section');
+      let found = false;
+      sections.forEach(section => {
+        const heading = section.querySelector('h2');
+        if (heading && heading.textContent.toLowerCase().includes(query)) {
+          section.scrollIntoView({behavior: "smooth"});
+          found = true;
+        }
+      });
+      if (!found) {
+        alert("未找到相关内容");
+      }
+    });
+    
+    // 放射性流程图动态生成脚本（原有功能不变）
+    const categories = [
+      { name: "经济建设", subs: ["数字经济", "产业集群", "区域平衡"] },
+      { name: "政治建设", subs: ["依法治国", "政府改革"] },
+      { name: "文化建设", subs: ["文化传承", "创新驱动"] },
+      { name: "社会建设", subs: ["民生改善", "社会治理", "公共服务"] },
+      { name: "生态文明建设", subs: ["绿色发展", "环境保护", "可持续发展"] }
+    ];
+    const strategyMap = document.getElementById('strategyMap');
+    const coreNode = document.getElementById('coreNode');
+    const svg = document.getElementById('connector-svg');
+    const mapRect = strategyMap.getBoundingClientRect();
+    const centerX = mapRect.width / 2;
+    const centerY = mapRect.height / 2;
+    const mainRadius = 200;
+    categories.forEach((category, index) => {
+      const angle = (index * 72) - 90;
+      const mainX = centerX + mainRadius * Math.cos(angle * Math.PI / 180);
+      const mainY = centerY + mainRadius * Math.sin(angle * Math.PI / 180);
+      const mainNode = document.createElement('div');
+      mainNode.className = 'main-node';
+      mainNode.textContent = category.name;
+      mainNode.style.left = (mainX - 60) + 'px';
+      mainNode.style.top = (mainY - 60) + 'px';
+      strategyMap.appendChild(mainNode);
+      const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+      const startX = centerX, startY = centerY, endX = mainX, endY = mainY;
+      const controlX = (startX + endX) / 2;
+      const controlY = (startY + endY) / 2 - 30;
+      path.setAttribute("d", `M ${startX} ${startY} Q ${controlX} ${controlY} ${endX} ${endY}`);
+      path.setAttribute("stroke", "#C7000B");
+      path.setAttribute("stroke-dasharray", "5,5");
+      path.setAttribute("fill", "none");
+      path.classList.add("connector");
+      svg.appendChild(path);
+      const subRadius = 150;
+      category.subs.forEach((sub, subIndex) => {
+        const subAngle = angle - 30 + (subIndex * (60 / (category.subs.length - 1)));
+        const subX = mainX + subRadius * Math.cos(subAngle * Math.PI / 180);
+        const subY = mainY + subRadius * Math.sin(subAngle * Math.PI / 180);
+        const subNode = document.createElement('div');
+        subNode.className = 'sub-node';
+        subNode.textContent = sub;
+        subNode.style.left = (subX - 40) + 'px';
+        subNode.style.top = (subY - 40) + 'px';
+        strategyMap.appendChild(subNode);
+        const subPath = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        const subControlX = (mainX + subX) / 2;
+        const subControlY = (mainY + subY) / 2 - 20;
+        subPath.setAttribute("d", `M ${mainX} ${mainY} Q ${subControlX} ${subControlY} ${subX} ${subY}`);
+        subPath.setAttribute("stroke", "#C7000B");
+        subPath.setAttribute("stroke-dasharray", "5,5");
+        subPath.setAttribute("fill", "none");
+        subPath.classList.add("connector");
+        svg.appendChild(subPath);
+      });
+    });
+    window.addEventListener('resize', () => {
+      location.reload();
+    });
+    
+    // GSAP 动画
+    // 如果需要此动画请确保已引入 GSAP 库
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+  <script>
+    gsap.from(".main-node", {
+      duration: 1,
+      scale: 0,
+      stagger: 0.1,
+      ease: "back.out(1.7)"
+    });
+  </script>
+</body>
+</html>
